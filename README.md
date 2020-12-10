@@ -1,0 +1,2 @@
+# file-utility-service
+This simple service combines a CLI tool and REST service to parse and readout/return file data using a simple fixed schema
