@@ -1,0 +1,7 @@
+{
+    "env": {
+        "ecmaVersion": 12
+    },
+    "rules": {
+    }        
+}
