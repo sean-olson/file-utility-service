@@ -21,4 +21,7 @@ test('data-file contents have been retrieved', async () => {
   expect(fileCount === 3 && haveStrings).toBe(true);
 });
 
-test.todo('parse files');
+test('fetch parsed data from files', async () => {
+  const data = await files.parseFiles();
+  expect(Array.isArray(data)).toBe(true);
+});
