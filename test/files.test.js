@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const files = require('../lib/fs/files');
+const {SORT_BY} = require('../lib/fs/files-constants');
 
 test('data files have been created', async () => {
   const filePath = (process.cwd() + path.sep + 'data-files' + path.sep).split(path.sep).join(path.posix.sep);
@@ -22,6 +23,7 @@ test('data-file contents have been retrieved', async () => {
 });
 
 test('fetch parsed data from files', async () => {
-  const data = await files.parseFiles();
+  const data = await files.parseFiles(SORT_BY.NAME);
+  console.log(data.length);
   expect(Array.isArray(data)).toBe(true);
 });
