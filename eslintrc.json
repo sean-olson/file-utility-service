@@ -3,5 +3,6 @@
         "ecmaVersion": 12
     },
     "rules": {
+        "semi": "error"
     }        
 }
