@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const files = require('../lib/fs/files');
-const {SORT_BY} = require('../lib/fs/files-constants');
+const files = require('../lib/file-api/file');
+const {SORT_BY} = require('../lib/file-api/file-constants');
 
 test('data files have been created', async () => {
   const filePath = (process.cwd() + path.sep + 'data-files' + path.sep).split(path.sep).join(path.posix.sep);
@@ -27,3 +27,7 @@ test('fetched parsed data from files', async () => {
   const data = await files.parseFiles(SORT_BY.GENDER);
   expect(Array.isArray(data) && data.length === 54).toBe(true);
 });
+
+test.todo('verify sortBy lastName');
+test.todo('verify sortBy gender');
+test.todo('verify sortBy birthDate');
