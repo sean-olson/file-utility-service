@@ -10,7 +10,7 @@ test('data files have been created', async () => {
   expect(generatedFiles.length).toBe(3);
 });
 
-test('data-file contents have been retrieved', async () => {
+test('fetched data file contents', async () => {
   const fetchedFiles = await files.fetchFiles();
   const fileCount = fetchedFiles.length;
   let haveStrings = true;
@@ -22,8 +22,8 @@ test('data-file contents have been retrieved', async () => {
   expect(fileCount === 3 && haveStrings).toBe(true);
 });
 
-test('fetch parsed data from files', async () => {
-  const data = await files.parseFiles(SORT_BY.NAME);
-  console.log(data.length);
-  expect(Array.isArray(data)).toBe(true);
+test('fetched parsed data from files', async () => {
+  await files.generateFiles(18);
+  const data = await files.parseFiles(SORT_BY.GENDER);
+  expect(Array.isArray(data) && data.length === 54).toBe(true);
 });
