@@ -33,7 +33,7 @@ test('able to fetch data files when they exist', async () => {
 /**
  * verify that the fetchDataFiles() will auto generate the files if they don't exist.
  */
-test('able to fetch data files when they exist', async () => {
+test('able to fetch data files when they do not previously exist -- will be auto generated', async () => {
   deleteAllFiles();
   const haveFiles = haveDataFiles()
   const fetchedFiles = fetchDataFiles();
@@ -148,7 +148,7 @@ test('sort-by name sorts by lastName in descending order', async () => {
   const persons = parseFiles(SORT_BY.BIRTH_DATE);
   let sortedByBirthDate = true;
   for(let i = 0; i < persons.length - 1; i++){
-    if ( Date.parse(persons[i].birthDate) <= Date.parse(persons[i + 1].birthDate)){
+    if ( Date.parse(persons[i].birthDate) > Date.parse(persons[i + 1].birthDate)) {
       sortedByBirthDate = false;
     } 
   }
