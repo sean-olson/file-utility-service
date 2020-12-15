@@ -1,12 +1,13 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const helmet = require('helmet');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-
-var app = express();
+const app = express();
+app.use(helmet());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -15,10 +16,21 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+// app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+
+
+// add the routes defined by modules in the routes folder
+const service_routes = require('./routes/index');
+for (let folder in service_routes) {
+  for(let obj in service_routes[folder]) {
+    if(typeof service_routes[folder][obj] === 'function') {
+      service_routes[folder][obj](app);
+    }
+  }
+}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
