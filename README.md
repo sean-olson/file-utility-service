@@ -35,7 +35,7 @@ A menu of available commands will be displayed.
 | clean | `clean`| deletes all data files and the data-file directory from disk |
 | gen | `gen [-n <number>]` | generates the sample files with 10 records unless -n is specified, constraint: 0 < n < 100 |
 | help | `help` | displays the help menu for the cli | 
-| print | `print [-s gender|birth|name]` | parses and displays the test files in the order specified, name by default |
+| print | `print [-s gender, birth, name]` | parses and displays the test files in the order specified, name by default |
 | quit | `quit` | exits the cli |
 
 
