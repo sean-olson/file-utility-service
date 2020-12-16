@@ -8,8 +8,31 @@
 </head>
 <body>
     <div class="container">
-        <h1>File Utility Service</h1>
+        <h1><%= title %></h1>
+        <p>ver. <%= version %></p>
+
+        <h4 class="section-head">records sorted by <em><%= sortBy %></em></h4>
+
+        <table class="table table-bordered table-striped">
+            <tr> 
+              <th style="width:200px;">Last Name</th> 
+              <th style="width:200px;">First Name</th> 
+              <th style="width:200px;">Gender</th> 
+              <th style="width:200px;">Favorite Color</th> 
+              <th style="width:200px;">Date of Birth</th> 
+            </tr>
+            <% records.forEach((record) => {  %>
+              <tr>
+                <td><%= record.lastName  %></td>
+                <td><%= record.firstName  %></td>
+                <td><%= record.gender  %></td>
+                <td><%= record.favoriteColor  %></td>
+                <td><%= record.birthDate  %></td>
+
+              </tr>
+            <% })%>
+            </table>
     </div>
-    <p>Sorted records</p>
+
 </body>
 </html>

@@ -2,7 +2,6 @@
 
 require('dotenv').config();
 const {env} = require('../lib/env/environment');
-console.log(env);
 
 /**
  * Module dependencies.

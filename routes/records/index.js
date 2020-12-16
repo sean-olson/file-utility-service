@@ -1,17 +1,21 @@
 
-const { cleanUp, generateFiles, parseFiles } = require('../../lib/file/file-api');
-
-// exports.fileDefinitions = fileDefinitions;
-// exports.cleanUp = cleanUp;
-// exports.generateFiles = generateFiles;
-// exports.haveDataFiles = haveDataFiles;
-// exports.fetchDataFiles = fetchDataFiles;
-// exports.parseFiles = parseFiles;
+const { cleanUp, generateFiles, parseFiles, appendRecord } = require('../../lib/file/file-api');
+const { helpers } = require('./helpers');
 
 module.exports = (app) => {
 
     /**
-     * the default records route
+     * the post route to add new records 
+     */
+
+    app.post(`/records/`, (req, res) => {
+        const record = helpers.parseRecord(req.body)
+        const msg = appendRecord(record) ? 'SUCCESS' : 'FAILURE';
+        res.status(200).json({msg});
+    });
+
+    /**
+     * the default records get route
      */
 
     app.get(`/records/`, (req, res) => {
@@ -21,8 +25,36 @@ module.exports = (app) => {
         res.status(200).json({records: output});
     });
 
+
     /**
-     * records route with sort-by parameter
+     * deletes the data files and directory
+     */
+
+    app.get(`/records/clean`, (req, res) => {
+        const msg =  cleanUp() ? 'Data files deleted' : 'Data files not deleted';
+        res.status(200).json({message: msg});
+    }); 
+
+    /**
+     * generates data files
+     */
+
+    app.get(`/records/gen`, (req, res) => {
+        const msg = generateFiles();
+        res.status(200).json({message: msg});
+    }); 
+
+    /**
+     * generates data files, the number of records per file determined by count with limits: 0 > n < 100 
+     */
+
+    app.get(`/records/gen/:count`, (req, res) => {
+        const msg = generateFiles(req.params.count);
+        res.status(200).json({message: msg});
+    }); 
+
+        /**
+     * records route with sort-by parameter: name | gender | birth
      */
 
     app.get(`/records/:sort`, (req, res) => {
@@ -50,7 +82,6 @@ module.exports = (app) => {
         recs.forEach((rec) => {output.push(rec.toObject())});
         res.status(200).json({records: output});
 
-    });
-
+    });   
 
 }
