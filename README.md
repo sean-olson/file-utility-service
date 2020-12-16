@@ -11,7 +11,7 @@ This service functions as a demonstration piece.  Built in node.js, it combines 
 }
 ```
 
-#### Getting Started
+### Getting Started
 
 1. Clone the Repository to your local machine
 ```
@@ -23,7 +23,7 @@ RUN: $ git clone https://github.com/sean-olson/file-utility-service.git
 RUN: $ npm install
 ```
 
-#### Using the CLI
+### Using the CLI
 From the root of the project, open a terminal window and
 ```
 RUN: $ npm run cli
@@ -39,7 +39,7 @@ A menu of available commands will be displayed.
 | quit | `quit` | exits the cli |
 
 
-#### Using the REST Service
+### Using the REST Service
 
 The REST service provides similar functionality as the CLI, but with the addition of the ability to append an record to a data file.  Start the REST service by opening a terminal in the root of the project, and
 
@@ -61,3 +61,10 @@ The service is configured to run at [http://localhost:8080](http://localhost:808
 | GET | `/records/:sort` | returns a JSON array of the of the records sorted by the sort option (name, gender, birthdate) |
 | GET | `/ui` | returns an HTML page with a list of the sorted by lastName, firstName in descending order |
 | GET | `/ui/:sort` | returns an HTML page with a list of the sorted by the sort option (name, gender, birthdate) |
+
+### Tests
+
+The file API tests are created with Jest, and are sitting in the /test directory in the root of the project. Run the tests from a terminal opened to the root.
+```
+RUN: $ npm run test
+```
